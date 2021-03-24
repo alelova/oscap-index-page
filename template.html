@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{{title}}</title>
+ 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+ 
+</head>
+  <body >   
+	  <h1> {{title}} </h1>   
+	  <h2> {{subtitle}} </h2>   
+	  <p>
+            Auditado con perfil de seguridad oscap_profile: xccdf_org.ssgproject.content_profile_cis
+	  </p>
+	  <table class="table table-sm" width=80%>
+          <thead>
+          <tr>
+		  <th scope="col"> Servidor </th>
+		  <th scope="col"> % Cumplimiento </th>
+		  <th scope="col"> Fecha Informe </th>
+          </tr> 
+	  </thead>
+	  <tr class="bg-success">
+		  <td> MEDIA </td>
+		  <td>{{total}}</td> 
+		  <td></td> 
+          </tr>
+	  {% for value in mydata %}   
+	  <tr>
+		  <td> <a href={{value[0]}}>{{value[0]}} </td>
+		  <td> {{value[1]}}</td>
+		  <td> {{value[2]}}</td>
+	  </tr>
+	  {% endfor %} 
+	  </table
+</body>
+</html> 
