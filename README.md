@@ -1,7 +1,13 @@
-Simplemente crea una pagina indice para los informes de open SCAP.
+<h2> Description </h2>
+Create an html index page for SCAP analysis reports.
 
-Muestra la media de todos los informes.
+You get the URL link to the server report, the result in (%), and the report date. 
 
-Muestra el enlace, el resultado y la media de los informes generados con oscap que se encuentren en una ruta.
+<h2>How it works</h2>
+Edit the python file create_index.py.
 
-Se puede modificar la apariencia con la plantilla template.html
+Select your own variables values: title, subtitle, reports path, and output file (htm if you want the same path of the reports.html)
+
+Run with ./create_index.py
+
+You can modify the output using your own template.html
