@@ -2,6 +2,7 @@
 import jinja2
 import re
 import statistics
+from operator import itemgetter
 from pathlib import Path
 from datetime import date
 
@@ -26,16 +27,19 @@ for nombre_archivo in files:
       if 'Finished at' in linea:
           match=(re.search(r'\d{4}-\d{2}-\d{2}', linea))
           fechareport=format(match.group(0))
-  data2.append([str(nombre_archivo).split('/')[5],round(res[0],2),fechareport])
+  servidor=str(nombre_archivo).split('/')[-1].replace(".html","")
+  data2.append([servidor,round(res[0],2),fechareport])
   handler.close() 
 
 for i in data2: 
     suma=suma+(i[1])
 media=round(suma/len(data2),2)
 #print (media)
+data2=sorted(data2, key=itemgetter(0))
 print(data2)
+
 #construimos la pagina
-subtitle=subtitle + str(date.today())
+subtitle=subtitle + str(date.today())+', '+str(len(data2))+ ' servidores.'
 subs = jinja2.Environment( 
               loader=jinja2.FileSystemLoader('./')      
 ).get_template('template.html').render(title=title,subtitle=subtitle,mydata=data2,total=media)

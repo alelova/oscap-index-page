@@ -4,17 +4,22 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{{title}}</title>
  
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
  
 </head>
-  <body >   
+<body >   
+
+<div class="container">
+    <div id="myDIV">
 	  <h1> {{title}} </h1>   
 	  <h2> {{subtitle}} </h2>   
 	  <p>
             Auditado con perfil de seguridad oscap_profile: xccdf_org.ssgproject.content_profile_cis
 	  </p>
+	  <p> Filtrar por servidor:</p>
+          <input class="form-control" id="myInput" type="text" placeholder="Search..">
 	  <table class="table table-sm" width=80%>
           <thead>
           <tr>
@@ -23,6 +28,7 @@
 		  <th scope="col"> Fecha Informe </th>
           </tr> 
 	  </thead>
+	  <tbody id="serverTable">
 	  <tr class="bg-success">
 		  <td> MEDIA </td>
 		  <td>{{total}}</td> 
@@ -35,6 +41,21 @@
 		  <td> {{value[2]}}</td>
 	  </tr>
 	  {% endfor %} 
-	  </table
+	  </tbody>
+	  </table>
+    </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#serverTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
+
 </body>
 </html> 
